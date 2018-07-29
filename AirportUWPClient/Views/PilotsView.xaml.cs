@@ -26,5 +26,10 @@ namespace AirportUWPClient.Views
         {
             this.InitializeComponent();
         }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
+        }
     }
 }

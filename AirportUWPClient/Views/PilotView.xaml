@@ -9,10 +9,70 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding PilotVMInstance, Source={StaticResource Locator}}">
 
-    <StackPanel>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="783,452,0,0" VerticalAlignment="Top"/>
-        <Button Content="Pilots" Command="{Binding ShowPilotsCommand}"></Button>
-        <Button Content="Pilots" Command="{Binding ShowPilotCommand}"></Button>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-    </StackPanel>
+        <Rectangle Fill="{StaticResource IndigoBrush}" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock Text="{Binding Title}"
+            Margin="18"
+            Style="{StaticResource PageTitle}"
+            TextAlignment="Center"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"/>
+        <Button Content="&#xE72B;"
+            FontFamily="Segoe MDL2 Assets"
+            Command="{Binding GoBackCommand}"
+            FontSize="20"
+            Foreground="White"
+            Margin="18"
+            Grid.Row="0"
+            Grid.Column="0"/>
+
+        <!--<TextBlock Text="First Name:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="2"/>
+        <TextBlock Text="{Binding FirstName}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="2"/>
+
+        <TextBlock Text="Last Name:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="3"/>
+        <TextBlock Text="{Binding LastName}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="3"/>
+
+        <TextBlock Text="Birth Date:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="4"/>
+        <TextBlock Text="{Binding BirthDate, Converter={StaticResource DateToStringConverter}}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="4"/>
+
+        <TextBlock Text="City:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="5"/>
+        <TextBlock Text="{Binding City}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="5"/>-->
+    </Grid>
 </Page>

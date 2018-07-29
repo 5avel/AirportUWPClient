@@ -1,4 +1,5 @@
-﻿using AirportUWPClient.ViewModels;
+﻿using AirportUWPClient.Services;
+using AirportUWPClient.ViewModels;
 using AirportUWPClient.Views;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
@@ -24,6 +25,7 @@ namespace AirportUWPClient
             navigationService.Configure(nameof(MainPageViewModel), typeof(MainPage));
             navigationService.Configure(nameof(PilotsViewModel), typeof(PilotsView));
             navigationService.Configure(nameof(PilotViewModel), typeof(PilotView));
+            navigationService.Configure(nameof(StewardessesViewModel), typeof(StewardessesView));
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -32,6 +34,7 @@ namespace AirportUWPClient
             else
             {
                 // Create run time view services and models
+                SimpleIoc.Default.Register<IPilotsService, PilotsService>();
             }
 
             //Register your services used here
@@ -40,9 +43,21 @@ namespace AirportUWPClient
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<PilotsViewModel>();
             SimpleIoc.Default.Register<PilotViewModel>();
+            SimpleIoc.Default.Register<StewardessesViewModel>();
 
-            ServiceLocator.Current.GetInstance<PilotViewModel>(); // <-- ?
+            
+
+            ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- ?
         }
+
+        //public IPilotsService PilotsService
+        //{
+        //    get
+        //    {
+        //        return ServiceLocator.Current.GetInstance<PilotsService>();
+        //    }
+        //}
+
 
         public MainPageViewModel MainPageVMInstance
         {
@@ -65,6 +80,14 @@ namespace AirportUWPClient
             get
             {
                 return ServiceLocator.Current.GetInstance<PilotViewModel>();
+            }
+        }
+
+        public StewardessesViewModel StewardessesVMInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<StewardessesViewModel>();
             }
         }
 

@@ -25,10 +25,11 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -95,7 +96,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateFormatConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Services\PilotsService.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\PilotViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -109,16 +114,22 @@
     <Compile Include="Models\Stewardess.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\GenericAirportService.cs" />
+    <Compile Include="Services\BaseAirportService.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\PilotsViewModel.cs" />
-    <Compile Include="ViewModels\PilotViewModel.cs" />
+    <Compile Include="ViewModels\StewardessesViewModel.cs" />
+    <Compile Include="Views\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PilotsView.xaml.cs">
       <DependentUpon>PilotsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PilotView.xaml.cs">
       <DependentUpon>PilotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StewardessesView.xaml.cs">
+      <DependentUpon>StewardessesView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -150,11 +161,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PilotsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PilotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StewardessesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
