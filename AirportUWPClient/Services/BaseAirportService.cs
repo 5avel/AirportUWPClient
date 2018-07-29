@@ -24,11 +24,23 @@ namespace AirportUWPClient.Services
             //return result;
         }
 
-        protected async Task<string> PostAsync(string url, string body)
+        protected async Task<string> PostAsync(string endPoint, string body)
         {
             using (var client = new HttpClient())
             {
-                using (var r = await client.PostAsync(new Uri(url), new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+                using (var r = await client.PostAsync(new Uri($"{baseURL}{endPoint}"), new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+                {
+                    string result = await r.Content.ReadAsStringAsync();
+                    return result;
+                }
+            }
+        }
+
+        protected async Task<string> PutAsync(string endPoint, int id, string body)
+        {
+            using (var client = new HttpClient())
+            {
+                using (var r = await client.PutAsync(new Uri($"{baseURL}{endPoint}/{id}"), new StringContent(body, Encoding.UTF8, "application/json")).ConfigureAwait(false))
                 {
                     string result = await r.Content.ReadAsStringAsync();
                     return result;
@@ -37,7 +49,7 @@ namespace AirportUWPClient.Services
         }
 
 
-       
+
 
 
     }

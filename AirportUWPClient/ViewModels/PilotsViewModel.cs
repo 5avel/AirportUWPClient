@@ -86,14 +86,18 @@ namespace AirportUWPClient.ViewModels
         public ICommand AddNewItemCommand { get; set; }
         public void AddNewItem()
         {
-            //_navigationService.NavigateTo(nameof(MainPageViewModel));
+            MessengerInstance.Send<Pilot, PilotViewModel>(new Pilot());
+            _navigationService.NavigateTo(nameof(PilotViewModel));
         }
 
         public ICommand EditSelectedItemCommand { get; set; }
         public void EditSelectedItem()
         {
-            MessengerInstance.Send(_selectedPilot);
-            _navigationService.NavigateTo(nameof(PilotViewModel));
+            if (_selectedPilot != null)
+            {
+                MessengerInstance.Send<Pilot, PilotViewModel>(_selectedPilot);
+                _navigationService.NavigateTo(nameof(PilotViewModel));
+            }
         }
 
     }

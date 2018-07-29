@@ -47,7 +47,8 @@ namespace AirportUWPClient
 
             
 
-            ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- ?
+           // ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- не понятно зачем но без вызова первый раз не работает
+            ServiceLocator.Current.GetInstance<PilotViewModel>();
         }
 
         //public IPilotsService PilotsService

@@ -5,31 +5,41 @@
     xmlns:local="using:AirportUWPClient.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:AirportUWPClient.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding PilotVMInstance, Source={StaticResource Locator}}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <converter:NullToVisibilityConverter x:Name="NullToVisibilityConvert"/>
+        <converter:DateFormatConverter x:Name="DateToStringConvert"/>
+    </Page.Resources>
+    
+    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="170"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle Fill="{StaticResource IndigoBrush}" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="{StaticResource IndigoBrush}" Grid.Row="0" Grid.ColumnSpan="4"/>
         <TextBlock Text="{Binding Title}"
             Margin="18"
-            Style="{StaticResource PageTitle}"
             TextAlignment="Center"
             Grid.Row="0"
-            Grid.ColumnSpan="2"/>
+            Grid.ColumnSpan="4"/>
         <Button Content="&#xE72B;"
             FontFamily="Segoe MDL2 Assets"
             Command="{Binding GoBackCommand}"
@@ -37,42 +47,62 @@
             Foreground="White"
             Margin="18"
             Grid.Row="0"
-            Grid.Column="0"/>
+            Grid.Column="1"/>
 
-        <!--<TextBlock Text="First Name:"
-            Style="{StaticResource DetailsHint}"
-            Grid.Column="0"
-            Grid.Row="2"/>
-        <TextBlock Text="{Binding FirstName}"
-            Style="{StaticResource DetailsText}"
+        <TextBlock Text="First Name:"
+                   Margin="8"
+                   HorizontalAlignment="Right"
             Grid.Column="1"
+            Grid.Row="2"/>
+        <TextBox Text="{Binding Pilot.FirstName, Mode=TwoWay}"
+                 Margin="2"
+            Grid.Column="2"
             Grid.Row="2"/>
 
         <TextBlock Text="Last Name:"
-            Style="{StaticResource DetailsHint}"
-            Grid.Column="0"
-            Grid.Row="3"/>
-        <TextBlock Text="{Binding LastName}"
-            Style="{StaticResource DetailsText}"
+                   Margin="8"
+                   HorizontalAlignment="Right"
             Grid.Column="1"
+            Grid.Row="3"/>
+        <TextBox Text="{Binding Pilot.LastName, Mode=TwoWay}"
+                 Margin="2"
+            Grid.Column="2"
             Grid.Row="3"/>
 
         <TextBlock Text="Birth Date:"
-            Style="{StaticResource DetailsHint}"
-            Grid.Column="0"
-            Grid.Row="4"/>
-        <TextBlock Text="{Binding BirthDate, Converter={StaticResource DateToStringConverter}}"
-            Style="{StaticResource DetailsText}"
+                   Margin="8"
+                   HorizontalAlignment="Right"
             Grid.Column="1"
+            Grid.Row="4"/>
+        <DatePicker Date="{Binding Pilot.Birthday}"
+                    Margin="2"
+            Grid.Column="2"
             Grid.Row="4"/>
 
-        <TextBlock Text="City:"
-            Style="{StaticResource DetailsHint}"
-            Grid.Column="0"
-            Grid.Row="5"/>
-        <TextBlock Text="{Binding City}"
-            Style="{StaticResource DetailsText}"
+        <TextBlock Text="Experience:"
+                   Margin="8"
+                   HorizontalAlignment="Right"
             Grid.Column="1"
-            Grid.Row="5"/>-->
+            Grid.Row="5"/>
+        <TextBox Text="{Binding Pilot.Experience}"
+                 Margin="2"
+            Grid.Column="2"
+            Grid.Row="5"/>
+        <TextBlock Text="CrewId:"
+            Margin="8"
+                   HorizontalAlignment="Right"
+            Grid.Column="1"
+            Grid.Row="6"/>
+        <TextBox Text="{Binding Pilot.CrewId}"
+                 Margin="2"
+            Grid.Column="2"
+            Grid.Row="6"/>
+        <Button Content="Save"
+                        Command="{Binding SaveItemCommand}"
+                        HorizontalAlignment="Stretch"
+                        Foreground="White"
+                        Margin="2"
+                        Grid.Row="7"
+                        Grid.Column="1"/>
     </Grid>
 </Page>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AirportUWPClient.Models;
+using AirportUWPClient.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
@@ -13,32 +14,38 @@ namespace AirportUWPClient.ViewModels
     public class PilotViewModel : BaseViewModel
     {
         private Pilot _model;
-        public PilotViewModel(INavigationService navigationService) : base(navigationService)
+        private IPilotsService _service;
+        public PilotViewModel(INavigationService navigationService, IPilotsService service) : base(navigationService)
         {
             _model = new Pilot();
+            _service = service;
 
             GoBackCommand = new RelayCommand(goBack);
+
+
+            SaveItemCommand = new RelayCommand(SaveItem);
 
             MessengerInstance.Register<Pilot>(this, entity =>
             {
                 _model = entity;
-                RaisePropertyChanged(() => Id);
-                RaisePropertyChanged(() => FirstName);
-                RaisePropertyChanged(() => LastName);
-                RaisePropertyChanged(() => BirthDate);
-                RaisePropertyChanged(() => Experience);
-                RaisePropertyChanged(() => CrewId);
+               
             });
+           
         }
 
-        public int Id => _model.Id;
-        public string FirstName => _model.FirstName;
-        public string LastName => _model.LastName;
-        public DateTime BirthDate => _model.Birthday;
-        public int Experience => _model.Experience;
-        public int CrewId => _model.CrewId;
+        public Pilot Pilot
+        {
+            get => _model;
+            set => _model = value;
+        }
 
-
+        public ICommand SaveItemCommand { get; set; }
+        public void SaveItem()
+        {
+            var res = _service.Update(_model);
+            //MessengerInstance.Send<Pilot, PilotViewModel>(new Pilot());
+            //_navigationService.NavigateTo(nameof(PilotViewModel));
+        }
 
         public ICommand GoBackCommand { get; set; }
 
