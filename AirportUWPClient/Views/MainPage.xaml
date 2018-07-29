@@ -11,8 +11,10 @@
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button Content="Pilots" Command="{Binding ShowPilotsCommand}"></Button>
-    
+        <Button Content="Pilots" Command="{Binding ShowPilotCommand}"></Button>
 
-   
+
+
+
     </StackPanel>
 </Page>

@@ -8,9 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding PilotsVMInstance, Source={StaticResource Locator}}">
-    
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="910,372,0,0" VerticalAlignment="Top"/>
 
-    </Grid>
+    <StackPanel>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="910,372,0,0" VerticalAlignment="Top"/>
+        <Button Content="Pilots" Command="{Binding ShowPilotsCommand}"></Button>
+        <Button Content="Pilots" Command="{Binding ShowPilotCommand}"></Button>
+
+    </StackPanel>
 </Page>
