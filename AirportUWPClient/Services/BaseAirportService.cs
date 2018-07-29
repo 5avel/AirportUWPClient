@@ -11,7 +11,7 @@ namespace AirportUWPClient.Services
 {
     public class BaseAirportService
     {
-        protected string baseURL = "http://localhost:5000/api";
+        protected string baseURL = "http://airportresrfulapi20180729070437.azurewebsites.net/api";
 
         protected async Task<string> GetAsync(string url)
         {
