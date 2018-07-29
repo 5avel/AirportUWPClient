@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AirportUWPClient.Models;
+using AirportUWPClient.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -71,7 +73,10 @@ namespace AirportUWPClient
                 // Обеспечение активности текущего окна
                 Window.Current.Activate();
             }
+            
         }
+
+
 
         /// <summary>
         /// Вызывается в случае сбоя навигации на определенную страницу
