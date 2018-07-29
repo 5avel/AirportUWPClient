@@ -13,6 +13,7 @@
     <Page.Resources>
         <converter:NullToVisibilityConverter x:Name="NullToVisibilityConvert"/>
         <converter:DateFormatConverter x:Name="DateToStringConvert"/>
+        <converter:DateFormatConverter x:Name="DateFormatConverter"/>
     </Page.Resources>
     
     <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -74,7 +75,7 @@
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="4"/>
-        <DatePicker Date="{Binding Pilot.Birthday}"
+        <DatePicker Date="{Binding Pilot.Birthday, Mode=TwoWay,Converter={StaticResource DateFormatConverter}, ConverterParameter=DateTime}"
                     Margin="2"
             Grid.Column="2"
             Grid.Row="4"/>
@@ -84,7 +85,7 @@
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="5"/>
-        <TextBox Text="{Binding Pilot.Experience}"
+        <TextBox Text="{Binding Pilot.Experience, Mode=TwoWay}"
                  Margin="2"
             Grid.Column="2"
             Grid.Row="5"/>
@@ -93,7 +94,7 @@
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="6"/>
-        <TextBox Text="{Binding Pilot.CrewId}"
+        <TextBox Text="{Binding Pilot.CrewId, Mode=TwoWay}"
                  Margin="2"
             Grid.Column="2"
             Grid.Row="6"/>

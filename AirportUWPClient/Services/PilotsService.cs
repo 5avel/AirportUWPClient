@@ -13,6 +13,8 @@ namespace AirportUWPClient.Services
     {
         Task<IEnumerable<Pilot>> GetAll();
         Task<Pilot> Update(Pilot item);
+        Task<Pilot> Add(Pilot item);
+        Task<bool> Delete(int id);
     }
 
 
@@ -40,6 +42,19 @@ namespace AirportUWPClient.Services
             return JsonConvert.DeserializeObject<Pilot>(json);
         }
 
-       
+        public async Task<Pilot> Add(Pilot item)
+        {
+            string obj = JsonConvert.SerializeObject(item);
+            string json = await PostAsync(endPoint, obj);
+            return JsonConvert.DeserializeObject<Pilot>(json);
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            return await DeleteAsync(endPoint, id);
+        }
+
+
+
     }
 }

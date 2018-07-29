@@ -23,6 +23,7 @@ namespace AirportUWPClient.ViewModels
             _service = service;
             AddNewItemCommand = new RelayCommand(AddNewItem);
             EditSelectedItemCommand = new RelayCommand(EditSelectedItem);
+            DeleteSelectedItemCommand = new RelayCommand(DeleteSelectedItem);
             SearchCommand = new RelayCommand(SearchAsync);
 
 
@@ -99,6 +100,18 @@ namespace AirportUWPClient.ViewModels
                 _navigationService.NavigateTo(nameof(PilotViewModel));
             }
         }
+
+        public ICommand DeleteSelectedItemCommand { get; set; }
+        public void DeleteSelectedItem()
+        {
+            if (_selectedPilot != null)
+            {
+                _service.Delete(_selectedPilot.Id);
+                UpdateDataAsync();
+            }
+        }
+
+        
 
     }
 }

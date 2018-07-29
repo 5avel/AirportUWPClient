@@ -48,7 +48,18 @@ namespace AirportUWPClient.Services
             }
         }
 
-
+        protected async Task<bool> DeleteAsync(string endPoint, int id)
+        {
+            using (var client = new HttpClient())
+            {
+                using (var r = await client.DeleteAsync(new Uri($"{baseURL}{endPoint}/{id}")).ConfigureAwait(false))
+                {
+                    if(r.StatusCode == System.Net.HttpStatusCode.OK)
+                        return true;
+                }
+            }
+            return false;
+        }
 
 
 

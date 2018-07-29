@@ -42,7 +42,14 @@ namespace AirportUWPClient.ViewModels
         public ICommand SaveItemCommand { get; set; }
         public void SaveItem()
         {
-            var res = _service.Update(_model);
+            if (_model.Id == 0)
+            {
+                var res = _service.Add(_model);
+            }
+            else
+            {
+                var res = _service.Update(_model);
+            }
             //MessengerInstance.Send<Pilot, PilotViewModel>(new Pilot());
             //_navigationService.NavigateTo(nameof(PilotViewModel));
         }
