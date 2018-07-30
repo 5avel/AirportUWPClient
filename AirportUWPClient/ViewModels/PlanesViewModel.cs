@@ -11,14 +11,13 @@ using System.Windows.Input;
 
 namespace AirportUWPClient.ViewModels
 {
-    public class PilotsViewModel : BaseViewModel
+    public class PlanesViewModel : BaseViewModel
     {
-        private IPilotsService _service;
-
-        public PilotsViewModel(INavigationService navigationService, IPilotsService service)
+        private IPlanesService _service;
+        public PlanesViewModel(INavigationService navigationService, IPlanesService service)
             : base(navigationService)
         {
-            Title = "Pilots";
+            Title = "Planes";
             _service = service;
             AddNewItemCommand = new RelayCommand(AddNewItem);
             EditSelectedItemCommand = new RelayCommand(EditSelectedItem);
@@ -28,18 +27,17 @@ namespace AirportUWPClient.ViewModels
 
             UpdateDataAsync().GetAwaiter();
 
-            MessengerInstance.Register<Pilot>(this, entity =>
+            MessengerInstance.Register<Plane>(this, entity =>
             {
-                if(entity != null)
+                if (entity != null)
                     UpdateDataAsync().GetAwaiter();
             });
         }
-
         private async Task UpdateDataAsync()
         {
-            var _pilots = await _service.GetAll();
-            this.Pilots = new ObservableCollection<Pilot>(_pilots);
-            RaisePropertyChanged(nameof(Pilots));
+            var _planes = await _service.GetAll();
+            this.Planes = new ObservableCollection<Plane>(_planes);
+            RaisePropertyChanged(nameof(Planes));
         }
 
         private string _searchFilter;
@@ -56,8 +54,8 @@ namespace AirportUWPClient.ViewModels
         public ICommand SearchCommand { get; set; }
         protected void SearchAsync()
         {
-            List<Pilot> temp = Pilots.ToList();
-            Pilots.Clear();
+            List<Plane> temp = Planes.ToList();
+            Planes.Clear();
             if (string.IsNullOrWhiteSpace(SearchFilter))
             {
                 temp.Clear();
@@ -65,57 +63,49 @@ namespace AirportUWPClient.ViewModels
             }
             else
             {
-                Pilots = new ObservableCollection<Pilot>(temp.Where(s => s.FirstName.StartsWith(SearchFilter, StringComparison.CurrentCultureIgnoreCase)
-                                            || s.LastName.StartsWith(SearchFilter, StringComparison.CurrentCultureIgnoreCase)).ToList());
+                Planes = new ObservableCollection<Plane>(temp.Where(s => s.Name.StartsWith(SearchFilter, StringComparison.CurrentCultureIgnoreCase)).ToList());
             }
-            RaisePropertyChanged(nameof(Pilots));
+            RaisePropertyChanged(nameof(Planes));
         }
 
-        public ObservableCollection<Pilot> Pilots { get; private set; }
+        public ObservableCollection<Plane> Planes { get; private set; }
 
-
-        private Pilot _selectedPilot;
-        public Pilot SelectedPilot
+        private Plane _selectedPlane;
+        public Plane SelectedPlane
         {
-            get => _selectedPilot;
+            get => _selectedPlane;
             set
             {
-                _selectedPilot = value;
-                RaisePropertyChanged(() => SelectedPilot);
+                _selectedPlane = value;
+                RaisePropertyChanged(() => SelectedPlane);
             }
         }
-
-        
-
 
         public ICommand AddNewItemCommand { get; set; }
         public void AddNewItem()
         {
-            MessengerInstance.Send<Pilot, PilotViewModel>(new Pilot());
-            _navigationService.NavigateTo(nameof(PilotViewModel));
+            MessengerInstance.Send<Plane, PlaneViewModel>(new Plane());
+            _navigationService.NavigateTo(nameof(PlaneViewModel));
         }
 
         public ICommand EditSelectedItemCommand { get; set; }
         public void EditSelectedItem()
         {
-            if (_selectedPilot != null)
+            if (_selectedPlane != null)
             {
-                MessengerInstance.Send<Pilot, PilotViewModel>(_selectedPilot);
-                _navigationService.NavigateTo(nameof(PilotViewModel));
+                MessengerInstance.Send<Plane, PlaneViewModel>(_selectedPlane);
+                _navigationService.NavigateTo(nameof(PlaneViewModel));
             }
         }
 
         public ICommand DeleteSelectedItemCommand { get; set; }
         public void DeleteSelectedItem()
         {
-            if (_selectedPilot != null)
+            if (_selectedPlane != null)
             {
-                _service.Delete(_selectedPilot.Id);
+                _service.Delete(_selectedPlane.Id);
                 UpdateDataAsync();
             }
         }
-
-        
-
     }
 }

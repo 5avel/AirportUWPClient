@@ -13,11 +13,27 @@
             <Button Width="175"  Content="Flights" Command="{Binding ShowFlightsCommand}"></Button>
         </ListBoxItem>
         <ListBoxItem >
+            <Button Width="175"  Content="Tickets" Command="{Binding ShowTicketsCommand}"></Button>
+        </ListBoxItem>
+        <ListBoxItem >
+            <Button Width="175"  Content="Departures" Command="{Binding ShowDeparturesCommand}"></Button>
+        </ListBoxItem>
+        <ListBoxItem >
+            <Button Width="175"  Content="Crews" Command="{Binding ShowCrewsCommand}"></Button>
+        </ListBoxItem>
+        <ListBoxItem >
             <Button Width="175"  Content="Pilots" Command="{Binding ShowPilotsCommand}"></Button>
         </ListBoxItem>
         <ListBoxItem>
-            <Button Width="175" Content="Stewardesses" Command="{Binding ShowPilotCommand}"></Button>
+            <Button Width="175" Content="Stewardesses" Command="{Binding ShowStewardessesCommand}"></Button>
         </ListBoxItem>
+        <ListBoxItem >
+            <Button Width="175"  Content="Planes" Command="{Binding ShowPlanesCommand}"></Button>
+        </ListBoxItem>
+        <ListBoxItem >
+            <Button Width="175"  Content="PlaneTypes" Command="{Binding ShowPlaneTypesCommand}"></Button>
+        </ListBoxItem>
+        
 
     </ListBox>
 </UserControl>

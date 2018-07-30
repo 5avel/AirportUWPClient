@@ -26,6 +26,8 @@ namespace AirportUWPClient
             navigationService.Configure(nameof(PilotViewModel), typeof(PilotView));
             navigationService.Configure(nameof(StewardessesViewModel), typeof(StewardessesView));
             navigationService.Configure(nameof(StewardessViewModel), typeof(StewardessView));
+            navigationService.Configure(nameof(PlanesViewModel), typeof(PlanesView));
+            navigationService.Configure(nameof(PlaneViewModel), typeof(PlaneView));
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -37,6 +39,7 @@ namespace AirportUWPClient
                 SimpleIoc.Default.Register<IPilotsService, PilotsService>();
                 SimpleIoc.Default.Register<IStewardessesService, StewardessesService>();
                 SimpleIoc.Default.Register<IFlightsService, FlightsService>();
+                SimpleIoc.Default.Register<IPlanesService, PlanesService>();
             }
 
             //Register your services used here
@@ -49,12 +52,15 @@ namespace AirportUWPClient
             SimpleIoc.Default.Register<PilotViewModel>();
             SimpleIoc.Default.Register<StewardessesViewModel>();
             SimpleIoc.Default.Register<StewardessViewModel>();
+            SimpleIoc.Default.Register<PlanesViewModel>();
+            SimpleIoc.Default.Register<PlaneViewModel>();
 
 
             // ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- не понятно зачем но без вызова первый раз не работает
             ServiceLocator.Current.GetInstance<PilotViewModel>();
             ServiceLocator.Current.GetInstance<StewardessViewModel>();
             ServiceLocator.Current.GetInstance<FlightViewModel>();
+            ServiceLocator.Current.GetInstance<PlaneViewModel>();
         }
 
      
@@ -103,6 +109,21 @@ namespace AirportUWPClient
             get
             {
                 return ServiceLocator.Current.GetInstance<StewardessViewModel>();
+            }
+        }
+        public PlanesViewModel PlanesVMInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PlanesViewModel>();
+            }
+        }
+
+        public PlaneViewModel PlaneVMInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PlaneViewModel>();
             }
         }
 

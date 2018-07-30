@@ -1,0 +1,135 @@
+﻿<Page
+    x:Class="AirportUWPClient.Views.PlanesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AirportUWPClient.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="using:AirportUWPClient.Views"
+    xmlns:converter="using:AirportUWPClient.Converters" 
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding PlanesVMInstance, Source={StaticResource Locator}}">
+    <Page.Resources>
+        <converter:NullToVisibilityConverter x:Name="NullToVisibilityConvert"/>
+        <converter:DateFormatConverter x:Name="DateToStringConvert"/>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <RelativePanel>
+            <Button x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True"
+                    FontFamily="Segoe MDL2 Assets" FontSize="36"
+                    Content="&#xE700;" Click="HamburgerButton_Click"/>
+            <TextBlock Name="TitleTextBlock" RelativePanel.RightOf="HamburgerButton" Text="{Binding Title}"
+                       FontSize="28" FontWeight="Bold" Margin="30 5 0 0" />
+        </RelativePanel>
+
+        <SplitView Name="mySplitView" Grid.Row="1" OpenPaneLength="200">
+            <SplitView.Pane>
+                <control:Menu Grid.Row="0"></control:Menu>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="{Binding SearchFilter, Mode=TwoWay}"
+                        Margin="18"
+                        TextAlignment="Left"
+                        PlaceholderText="Search query..."
+                        Grid.Row="0"
+                        Grid.Column="0"/>
+                    <Button Content="Search"
+                        Command="{Binding SearchCommand}"
+                        HorizontalAlignment="Stretch"
+                        Foreground="White"
+                        Margin="18"
+                        Grid.Row="0"
+                        Grid.Column="1"/>
+                    <Button Content="Add new"
+                        Command="{Binding AddNewItemCommand}"
+                        HorizontalAlignment="Stretch"
+                        Foreground="White"
+                        Margin="18"
+                        Grid.Row="0"
+                        Grid.Column="2"/>
+
+                    <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer>
+                            <ListView  Grid.Column="0" ItemsSource="{Binding Planes}" SelectedItem="{Binding SelectedPlane, Mode=TwoWay}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="10">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Alias:" Padding="20,0,0,0"/>
+                                                <TextBlock Text="{Binding Name}" Padding="6,0,0,0"/>
+                                                <TextBlock Text="ID:" Padding="20,0,0,0"/>
+                                                <TextBlock Text="{Binding Id}" Padding="6,0,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="ReleaseDate:" Padding="20,0,0,0"/>
+                                                <TextBlock Text="{Binding ReleaseDate, Converter={StaticResource DateToStringConvert}}" Padding="6,0,0,0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollViewer>
+                        <Grid Margin="10" Grid.Column="1" Visibility="{Binding SelectedPlane, Converter={StaticResource NullToVisibilityConvert}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="50" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Id:" HorizontalAlignment="Right" Padding="5"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedPlane.Id}" HorizontalAlignment="Left" Padding="5"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Alias:" HorizontalAlignment="Right" Padding="5"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedPlane.Name}" HorizontalAlignment="Left" Padding="5"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="ReleaseDate:" HorizontalAlignment="Right" Padding="5"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedPlane.ReleaseDate, Converter={StaticResource DateToStringConvert}}" HorizontalAlignment="Left" Padding="5"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="DepartureId:" HorizontalAlignment="Right" Padding="5"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding SelectedPlane.DepartureId}" HorizontalAlignment="Left" Padding="5"/>
+                            <TextBlock Grid.Column="0" Grid.Row="4" Text="PlaneTypeId:" HorizontalAlignment="Right" Padding="5"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding SelectedPlane.PlaneTypeId}" HorizontalAlignment="Left" Padding="5"/>
+                            <Button Content="Edit"
+                        Command="{Binding EditSelectedItemCommand}"
+                        HorizontalAlignment="Stretch"
+                        Foreground="White"
+                        Margin="5"
+                        Grid.Row="6"
+                        Grid.Column="0"/>
+                            <Button Content="Delete"
+                        Command="{Binding DeleteSelectedItemCommand}"
+                        HorizontalAlignment="Stretch"
+                        Foreground="White"
+                        Margin="5"
+                        Grid.Row="6"
+                        Grid.Column="1"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>

@@ -5,37 +5,34 @@ using System.Threading.Tasks;
 
 namespace AirportUWPClient.Services
 {
-    public interface IPilotsService
+    public interface IPlanesService
     {
-        Task<IEnumerable<Pilot>> GetAll();
-        Task<Pilot> Update(Pilot item);
-        Task<Pilot> Add(Pilot item);
+        Task<IEnumerable<Plane>> GetAll();
+        Task<Plane> Update(Plane item);
+        Task<Plane> Add(Plane item);
         Task<bool> Delete(int id);
     }
-
-
-    public class PilotsService : BaseAirportService, IPilotsService
+    public class PlanesService : BaseAirportService, IPlanesService
     {
-
-        private string endPoint = "/pilots";
-        public async Task<IEnumerable<Pilot>> GetAll()
+        private string endPoint = "/planes";
+        public async Task<IEnumerable<Plane>> GetAll()
         {
             string json = await GetAsync(endPoint);
-            return JsonConvert.DeserializeObject<IEnumerable<Pilot>>(json);
+            return JsonConvert.DeserializeObject<IEnumerable<Plane>>(json);
         }
 
-        public async Task<Pilot> Update(Pilot item)
+        public async Task<Plane> Update(Plane item)
         {
             string obj = JsonConvert.SerializeObject(item);
             string json = await PutAsync(endPoint, item.Id, obj);
-            return JsonConvert.DeserializeObject<Pilot>(json);
+            return JsonConvert.DeserializeObject<Plane>(json);
         }
 
-        public async Task<Pilot> Add(Pilot item)
+        public async Task<Plane> Add(Plane item)
         {
             string obj = JsonConvert.SerializeObject(item);
             string json = await PostAsync(endPoint, obj);
-            return JsonConvert.DeserializeObject<Pilot>(json);
+            return JsonConvert.DeserializeObject<Plane>(json);
         }
 
         public async Task<bool> Delete(int id)

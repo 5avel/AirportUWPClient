@@ -99,13 +99,20 @@
     <Compile Include="Converters\DataPicerConverter.cs" />
     <Compile Include="Converters\DateFormatConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Services\CrewsService.cs" />
+    <Compile Include="Services\DeparturesService.cs" />
     <Compile Include="Services\FlightsService.cs" />
     <Compile Include="Services\PilotsService.cs" />
+    <Compile Include="Services\PilotTypesService.cs" />
+    <Compile Include="Services\PlanesService.cs" />
     <Compile Include="Services\StewardessesService.cs" />
+    <Compile Include="Services\TicketsService.cs" />
     <Compile Include="ViewModels\FlightsViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PilotViewModel.cs" />
+    <Compile Include="ViewModels\PlanesViewModel.cs" />
+    <Compile Include="ViewModels\PlaneViewModel.cs" />
     <Compile Include="ViewModels\StewardessViewModel.cs" />
     <Compile Include="Views\FlightsView.xaml.cs">
       <DependentUpon>FlightsView.xaml</DependentUpon>
@@ -136,6 +143,12 @@
     </Compile>
     <Compile Include="Views\PilotView.xaml.cs">
       <DependentUpon>PilotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlanesView.xaml.cs">
+      <DependentUpon>PlanesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaneView.xaml.cs">
+      <DependentUpon>PlaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StewardessesView.xaml.cs">
       <DependentUpon>StewardessesView.xaml</DependentUpon>
@@ -186,6 +199,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PilotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlanesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
