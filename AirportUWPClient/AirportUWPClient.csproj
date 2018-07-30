@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\PlanesViewModel.cs" />
     <Compile Include="ViewModels\PlaneViewModel.cs" />
     <Compile Include="ViewModels\StewardessViewModel.cs" />
+    <Compile Include="ViewModels\TicketsViewModel.cs" />
     <Compile Include="Views\FlightsView.xaml.cs">
       <DependentUpon>FlightsView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +165,9 @@
     </Compile>
     <Compile Include="Views\StewardessView.xaml.cs">
       <DependentUpon>StewardessView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TicketsView.xaml.cs">
+      <DependentUpon>TicketsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StewardessView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TicketsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -31,6 +31,8 @@ namespace AirportUWPClient
             navigationService.Configure(nameof(PlaneTypesViewModel), typeof(PlaneTypesView));
             navigationService.Configure(nameof(PlaneTypeViewModel), typeof(PlaneTypeView));
 
+            navigationService.Configure(nameof(TicketsViewModel), typeof(TicketsView));
+
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 // Create design time view services and models
@@ -43,6 +45,8 @@ namespace AirportUWPClient
                 SimpleIoc.Default.Register<IFlightsService, FlightsService>();
                 SimpleIoc.Default.Register<IPlanesService, PlanesService>();
                 SimpleIoc.Default.Register<IPlaneTypesService, PlaneTypesService>();
+
+                SimpleIoc.Default.Register<ITicketsService, TicketsService>();
             }
 
             //Register your services used here
@@ -59,6 +63,7 @@ namespace AirportUWPClient
             SimpleIoc.Default.Register<PlaneViewModel>();
             SimpleIoc.Default.Register<PlaneTypesViewModel>();
             SimpleIoc.Default.Register<PlaneTypeViewModel>();
+            SimpleIoc.Default.Register<TicketsViewModel>();
 
 
             // ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- не понятно зачем но без вызова первый раз не работает
@@ -146,6 +151,13 @@ namespace AirportUWPClient
             get
             {
                 return ServiceLocator.Current.GetInstance<PlaneTypeViewModel>();
+            }
+        }
+        public TicketsViewModel TicketsVMInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TicketsViewModel>();
             }
         }
 

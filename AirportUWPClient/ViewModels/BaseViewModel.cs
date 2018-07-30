@@ -23,7 +23,7 @@ namespace AirportUWPClient.ViewModels
             _navigationService = navigationService;
 
             ShowFlightsCommand = new RelayCommand(ShowFlights);
-            ShowTicketsCommand = new RelayCommand(ShowTickets, () => false);
+            ShowTicketsCommand = new RelayCommand(ShowTickets);
             ShowDeparturesCommand = new RelayCommand(ShowDepartures, () => false);
             ShowCrewsCommand = new RelayCommand(ShowCrews, () => false);
             ShowPilotsCommand = new RelayCommand(ShowPilots);
@@ -38,7 +38,7 @@ namespace AirportUWPClient.ViewModels
 
         public ICommand ShowTicketsCommand { get; set; }
         public void ShowTickets() =>
-            _navigationService.NavigateTo(nameof(FlightsViewModel));
+            _navigationService.NavigateTo(nameof(TicketsViewModel));
 
         public ICommand ShowDeparturesCommand { get; set; }
         public void ShowDepartures() =>

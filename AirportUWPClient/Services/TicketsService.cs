@@ -8,9 +8,8 @@ namespace AirportUWPClient.Services
     public interface ITicketsService
     {
         Task<IEnumerable<Ticket>> GetAll();
-        Task<Ticket> Update(Ticket item);
-        Task<Ticket> Add(Ticket item);
-        Task<bool> Delete(int id);
+        Task<Ticket> Buy(int id);
+        Task<Ticket> Return(int id);
     }
     public class TicketsService : BaseAirportService, ITicketsService
     {
@@ -21,23 +20,18 @@ namespace AirportUWPClient.Services
             return JsonConvert.DeserializeObject<IEnumerable<Ticket>>(json);
         }
 
-        public async Task<Ticket> Update(Ticket item)
+        public async Task<Ticket> Buy(int id)
         {
-            string obj = JsonConvert.SerializeObject(item);
-            string json = await PutAsync(endPoint, item.Id, obj);
+            string json = await GetAsync($"{endPoint}/Buy/{id}");
             return JsonConvert.DeserializeObject<Ticket>(json);
         }
 
-        public async Task<Ticket> Add(Ticket item)
+        public async Task<Ticket> Return(int id)
         {
-            string obj = JsonConvert.SerializeObject(item);
-            string json = await PostAsync(endPoint, obj);
+            string json = await GetAsync($"{endPoint}/Return/{id}");
             return JsonConvert.DeserializeObject<Ticket>(json);
         }
 
-        public async Task<bool> Delete(int id)
-        {
-            return await DeleteAsync(endPoint, id);
-        }
+
     }
 }
