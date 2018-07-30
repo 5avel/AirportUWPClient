@@ -27,15 +27,15 @@ namespace AirportUWPClient.ViewModels
             
             ShowPilotsCommand = new RelayCommand(ShowPilots);
             ShowPilotCommand = new RelayCommand(ShowPilot);
-            ShowMainCommand = new RelayCommand(ShowMain);
+            ShowFlightsCommand = new RelayCommand(ShowFlights);
 
             
 
         }
         
-        public ICommand ShowMainCommand { get; set; }
-        public void ShowMain() =>
-            _navigationService.NavigateTo(nameof(MainPageViewModel));
+        public ICommand ShowFlightsCommand { get; set; }
+        public void ShowFlights() =>
+            _navigationService.NavigateTo(nameof(FlightsViewModel));
 
         public ICommand ShowPilotsCommand { get; set; }
         public void ShowPilots() =>

@@ -20,9 +20,8 @@ namespace AirportUWPClient
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             navigationService = new NavigationService();
-            
-            
-            navigationService.Configure(nameof(MainPageViewModel), typeof(MainPage));
+            navigationService.Configure(nameof(FlightsViewModel), typeof(FlightsView));
+            navigationService.Configure(nameof(FlightViewModel), typeof(FlightView));
             navigationService.Configure(nameof(PilotsViewModel), typeof(PilotsView));
             navigationService.Configure(nameof(PilotViewModel), typeof(PilotView));
             navigationService.Configure(nameof(StewardessesViewModel), typeof(StewardessesView));
@@ -37,12 +36,15 @@ namespace AirportUWPClient
                 // Create run time view services and models
                 SimpleIoc.Default.Register<IPilotsService, PilotsService>();
                 SimpleIoc.Default.Register<IStewardessesService, StewardessesService>();
+                SimpleIoc.Default.Register<IFlightsService, FlightsService>();
             }
 
             //Register your services used here
             //SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-            SimpleIoc.Default.Register<MainPageViewModel>();
+
+            SimpleIoc.Default.Register<FlightsViewModel>();
+            SimpleIoc.Default.Register<FlightViewModel>();
             SimpleIoc.Default.Register<PilotsViewModel>();
             SimpleIoc.Default.Register<PilotViewModel>();
             SimpleIoc.Default.Register<StewardessesViewModel>();
@@ -52,13 +54,24 @@ namespace AirportUWPClient
             // ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- не понятно зачем но без вызова первый раз не работает
             ServiceLocator.Current.GetInstance<PilotViewModel>();
             ServiceLocator.Current.GetInstance<StewardessViewModel>();
+            ServiceLocator.Current.GetInstance<FlightViewModel>();
         }
 
-        public MainPageViewModel MainPageVMInstance
+     
+
+        public FlightsViewModel FlightsVMInstance
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainPageViewModel>();
+                return ServiceLocator.Current.GetInstance<FlightsViewModel>();
+            }
+        }
+
+        public FlightViewModel FlightVMInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<FlightViewModel>();
             }
         }
 

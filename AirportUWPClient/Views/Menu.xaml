@@ -10,7 +10,7 @@
     d:DesignWidth="400">
     <ListBox SelectionMode="Single" >
         <ListBoxItem >
-            <Button Width="175"  Content="Main" Command="{Binding ShowMainCommand}"></Button>
+            <Button Width="175"  Content="Flights" Command="{Binding ShowFlightsCommand}"></Button>
         </ListBoxItem>
         <ListBoxItem >
             <Button Width="175"  Content="Pilots" Command="{Binding ShowPilotsCommand}"></Button>

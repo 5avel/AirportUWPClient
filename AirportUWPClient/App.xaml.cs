@@ -1,5 +1,6 @@
 ﻿using AirportUWPClient.Models;
 using AirportUWPClient.Services;
+using AirportUWPClient.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -68,7 +69,7 @@ namespace AirportUWPClient
                     // Если стек навигации не восстанавливается для перехода к первой странице,
                     // настройка новой страницы путем передачи необходимой информации в качестве параметра
                     // параметр
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(FlightsView), e.Arguments);
                 }
                 // Обеспечение активности текущего окна
                 Window.Current.Activate();

@@ -12,29 +12,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using AirportUWPClient.Services;
-using AirportUWPClient.Models;
-using System.Threading.Tasks;
-using AirportUWPClient.Views;
-using GalaSoft.MvvmLight.Views;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
+// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace AirportUWPClient
+namespace AirportUWPClient.Views
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class FlightView : Page
     {
-        public  MainPage()
+        public FlightView()
         {
             this.InitializeComponent();
-        }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
         }
     }
 }
