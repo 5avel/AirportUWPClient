@@ -26,6 +26,7 @@ namespace AirportUWPClient
             navigationService.Configure(nameof(PilotsViewModel), typeof(PilotsView));
             navigationService.Configure(nameof(PilotViewModel), typeof(PilotView));
             navigationService.Configure(nameof(StewardessesViewModel), typeof(StewardessesView));
+            navigationService.Configure(nameof(StewardessViewModel), typeof(StewardessView));
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -35,6 +36,7 @@ namespace AirportUWPClient
             {
                 // Create run time view services and models
                 SimpleIoc.Default.Register<IPilotsService, PilotsService>();
+                SimpleIoc.Default.Register<IStewardessesService, StewardessesService>();
             }
 
             //Register your services used here
@@ -44,21 +46,13 @@ namespace AirportUWPClient
             SimpleIoc.Default.Register<PilotsViewModel>();
             SimpleIoc.Default.Register<PilotViewModel>();
             SimpleIoc.Default.Register<StewardessesViewModel>();
+            SimpleIoc.Default.Register<StewardessViewModel>();
 
-            
 
-           // ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- не понятно зачем но без вызова первый раз не работает
+            // ServiceLocator.Current.GetInstance<StewardessesViewModel>(); // <-- не понятно зачем но без вызова первый раз не работает
             ServiceLocator.Current.GetInstance<PilotViewModel>();
+            ServiceLocator.Current.GetInstance<StewardessViewModel>();
         }
-
-        //public IPilotsService PilotsService
-        //{
-        //    get
-        //    {
-        //        return ServiceLocator.Current.GetInstance<PilotsService>();
-        //    }
-        //}
-
 
         public MainPageViewModel MainPageVMInstance
         {
@@ -89,6 +83,13 @@ namespace AirportUWPClient
             get
             {
                 return ServiceLocator.Current.GetInstance<StewardessesViewModel>();
+            }
+        }
+        public StewardessViewModel StewardessVMInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<StewardessViewModel>();
             }
         }
 

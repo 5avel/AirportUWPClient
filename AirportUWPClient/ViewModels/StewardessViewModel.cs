@@ -7,25 +7,24 @@ using System.Windows.Input;
 
 namespace AirportUWPClient.ViewModels
 {
-    public class PilotViewModel : BaseViewModel
+    
+    public class StewardessViewModel : BaseViewModel
     {
-        private Pilot _model;
-        private IPilotsService _service;
-        public PilotViewModel(INavigationService navigationService, IPilotsService service) : base(navigationService)
+        private Stewardess _model;
+        private IStewardessesService _service;
+
+        public StewardessViewModel(INavigationService navigationService, IStewardessesService service) : base(navigationService)
         {
-            _model = new Pilot();
+            _model = new Stewardess();
             _service = service;
-
             GoBackCommand = new RelayCommand(goBack);
-
 
             SaveItemCommand = new RelayCommand(SaveItem);
 
-            MessengerInstance.Register<Pilot>(this, entity =>
+            MessengerInstance.Register<Stewardess>(this, entity =>
             {
                 _model = entity;
             });
-           
         }
 
         public DateTimeOffset dpDateTime
@@ -38,7 +37,7 @@ namespace AirportUWPClient.ViewModels
             }
         }
 
-        public Pilot Pilot
+        public Stewardess Stewardess
         {
             get => _model;
             set => _model = value;
@@ -55,9 +54,9 @@ namespace AirportUWPClient.ViewModels
             {
                 var res = _service.Update(_model);
             }
-            MessengerInstance.Send<Pilot, PilotsViewModel>(_model);
+            MessengerInstance.Send<Stewardess, StewardessesViewModel>(_model);
             goBack();
-            
+
         }
 
         public ICommand GoBackCommand { get; set; }

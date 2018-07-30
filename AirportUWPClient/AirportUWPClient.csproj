@@ -100,8 +100,10 @@
     <Compile Include="Converters\DateFormatConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Services\PilotsService.cs" />
+    <Compile Include="Services\StewardessesService.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PilotViewModel.cs" />
+    <Compile Include="ViewModels\StewardessViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +133,9 @@
     </Compile>
     <Compile Include="Views\StewardessesView.xaml.cs">
       <DependentUpon>StewardessesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StewardessView.xaml.cs">
+      <DependentUpon>StewardessView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StewardessesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StewardessView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

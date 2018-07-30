@@ -40,9 +40,7 @@ namespace AirportUWPClient.ViewModels
         {
             var _pilots = await _service.GetAll();
             this.Pilots = new ObservableCollection<Pilot>(_pilots);
-           
             RaisePropertyChanged(nameof(Pilots));
-
         }
 
         private string _searchFilter;
