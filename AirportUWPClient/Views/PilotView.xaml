@@ -75,7 +75,7 @@
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="4"/>
-        <DatePicker Date="{Binding Pilot.Birthday, Mode=TwoWay,Converter={StaticResource DateFormatConverter}, ConverterParameter=DateTime}"
+        <DatePicker Date="{Binding dpDateTime, Mode=TwoWay}"
                     Margin="2"
             Grid.Column="2"
             Grid.Row="4"/>

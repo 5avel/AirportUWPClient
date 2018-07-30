@@ -28,6 +28,12 @@ namespace AirportUWPClient.ViewModels
 
 
             UpdateDataAsync().GetAwaiter();
+
+            MessengerInstance.Register<Pilot>(this, entity =>
+            {
+                if(entity != null)
+                    UpdateDataAsync().GetAwaiter();
+            });
         }
 
         private async Task UpdateDataAsync()

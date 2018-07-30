@@ -20,20 +20,13 @@ namespace AirportUWPClient.Services
 
     public class PilotsService : BaseAirportService, IPilotsService
     {
-        public PilotsService()
-        {
-
-        }
 
         private string endPoint = "/pilots";
-
-
         public async Task<IEnumerable<Pilot>> GetAll()
         {
             string json = await GetAsync(endPoint);
             return JsonConvert.DeserializeObject<IEnumerable<Pilot>>(json);
         }
-
 
         public async Task<Pilot> Update(Pilot item)
         {
@@ -53,8 +46,5 @@ namespace AirportUWPClient.Services
         {
             return await DeleteAsync(endPoint, id);
         }
-
-
-
     }
 }

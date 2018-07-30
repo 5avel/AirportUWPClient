@@ -33,6 +33,16 @@ namespace AirportUWPClient.ViewModels
            
         }
 
+        public DateTimeOffset dpDateTime
+        {
+            get { return new DateTimeOffset(_model.Birthday); }
+            set
+            {
+                _model.Birthday = value.DateTime;
+                RaisePropertyChanged();
+            }
+        }
+
         public Pilot Pilot
         {
             get => _model;
@@ -50,8 +60,9 @@ namespace AirportUWPClient.ViewModels
             {
                 var res = _service.Update(_model);
             }
-            //MessengerInstance.Send<Pilot, PilotViewModel>(new Pilot());
-            //_navigationService.NavigateTo(nameof(PilotViewModel));
+            MessengerInstance.Send<Pilot, PilotsViewModel>(_model);
+            goBack();
+            
         }
 
         public ICommand GoBackCommand { get; set; }
