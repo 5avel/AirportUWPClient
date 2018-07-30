@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="AirportUWPClient.Views.PilotView"
+    x:Class="AirportUWPClient.Views.PlaneTypeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AirportUWPClient.Views"
@@ -8,14 +8,12 @@
     xmlns:converter="using:AirportUWPClient.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding PilotVMInstance, Source={StaticResource Locator}}">
-
+     DataContext="{Binding PlaneTypeVMInstance, Source={StaticResource Locator}}">
     <Page.Resources>
         <converter:NullToVisibilityConverter x:Name="NullToVisibilityConvert"/>
         <converter:DateFormatConverter x:Name="DateToStringConvert"/>
         <converter:DateFormatConverter x:Name="DateFormatConverter"/>
     </Page.Resources>
-    
     <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -50,51 +48,51 @@
             Grid.Row="0"
             Grid.Column="1"/>
 
-        <TextBlock Text="First Name:"
+        <TextBlock Text="Model:"
                    Margin="8"
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="2"/>
-        <TextBox Text="{Binding Pilot.FirstName, Mode=TwoWay}"
+        <TextBox Text="{Binding PlaneType.Model, Mode=TwoWay}"
                  Margin="2"
             Grid.Column="2"
             Grid.Row="2"/>
 
-        <TextBlock Text="Last Name:"
+        <TextBlock Text="Capacity:"
                    Margin="8"
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="3"/>
-        <TextBox Text="{Binding Pilot.LastName, Mode=TwoWay}"
+        <TextBox Text="{Binding PlaneType.Capacity, Mode=TwoWay}"
                  Margin="2"
             Grid.Column="2"
             Grid.Row="3"/>
 
-        <TextBlock Text="Birth Date:"
+        <TextBlock Text="ServiceLifeDays:"
                    Margin="8"
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="4"/>
-        <DatePicker Date="{Binding dpDateTime, Mode=TwoWay}"
+        <TextBox Text="{Binding ServiceLifeDays, Mode=TwoWay}"
                     Margin="2"
             Grid.Column="2"
             Grid.Row="4"/>
 
-        <TextBlock Text="Experience:"
+        <TextBlock Text="Range:"
                    Margin="8"
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="5"/>
-        <TextBox Text="{Binding Pilot.Experience, Mode=TwoWay}"
+        <TextBox Text="{Binding PlaneType.Range, Mode=TwoWay}"
                  Margin="2"
             Grid.Column="2"
             Grid.Row="5"/>
-        <TextBlock Text="CrewId:"
+        <TextBlock Text="Seats:"
             Margin="8"
                    HorizontalAlignment="Right"
             Grid.Column="1"
             Grid.Row="6"/>
-        <TextBox Text="{Binding Pilot.CrewId, Mode=TwoWay}"
+        <TextBox Text="{Binding PlaneType.Seats, Mode=TwoWay}"
                  Margin="2"
             Grid.Column="2"
             Grid.Row="6"/>

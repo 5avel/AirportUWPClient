@@ -29,7 +29,7 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle Fill="{StaticResource IndigoBrush}" Grid.Row="0" Grid.ColumnSpan="4"/>
+        <Rectangle  Grid.Row="0" Grid.ColumnSpan="4"/>
         <TextBlock Text="{Binding Title}"
             Margin="18"
             TextAlignment="Center"

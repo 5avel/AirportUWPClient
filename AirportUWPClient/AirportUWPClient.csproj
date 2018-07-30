@@ -99,11 +99,12 @@
     <Compile Include="Converters\DataPicerConverter.cs" />
     <Compile Include="Converters\DateFormatConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\TimeSpanToDayConverter.cs" />
     <Compile Include="Services\CrewsService.cs" />
     <Compile Include="Services\DeparturesService.cs" />
     <Compile Include="Services\FlightsService.cs" />
     <Compile Include="Services\PilotsService.cs" />
-    <Compile Include="Services\PilotTypesService.cs" />
+    <Compile Include="Services\PlaneTypesService.cs" />
     <Compile Include="Services\PlanesService.cs" />
     <Compile Include="Services\StewardessesService.cs" />
     <Compile Include="Services\TicketsService.cs" />
@@ -146,6 +147,14 @@
     </Compile>
     <Compile Include="Views\PlanesView.xaml.cs">
       <DependentUpon>PlanesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\PlaneTypesViewModel.cs" />
+    <Compile Include="ViewModels\PlaneTypeViewModel.cs" />
+    <Compile Include="Views\PlaneTypesView.xaml.cs">
+      <DependentUpon>PlaneTypesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaneTypeView.xaml.cs">
+      <DependentUpon>PlaneTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlaneView.xaml.cs">
       <DependentUpon>PlaneView.xaml</DependentUpon>
@@ -203,6 +212,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlanesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlaneTypesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlaneTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

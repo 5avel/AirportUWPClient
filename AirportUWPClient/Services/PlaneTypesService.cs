@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace AirportUWPClient.Services
 {
-    public interface IPilotTypesService
+    public interface IPlaneTypesService
     {
         Task<IEnumerable<PlaneType>> GetAll();
         Task<PlaneType> Update(PlaneType item);
         Task<PlaneType> Add(PlaneType item);
         Task<bool> Delete(int id);
     }
-    public class PilotTypesService : BaseAirportService, IPilotTypesService
+    public class PlaneTypesService : BaseAirportService, IPlaneTypesService
     {
         private string endPoint = "/planeTypes";
         public async Task<IEnumerable<PlaneType>> GetAll()
